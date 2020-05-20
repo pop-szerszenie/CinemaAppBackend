@@ -3,22 +3,31 @@ package com.CinemaAppBackend.dao.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="custom")
-public class Customer {
+@Table(name="users")
+public class User {
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name = "custom_ID")
+    @Column(name = "users_id")
     private long id;
-    @Column(name = "custom_F_NAME")
+    @Column(name = "users_f_name")
     private String firstName;
-    @Column(name = "custom_L_NAME")
+    @Column(name = "users_l_name")
     private String lastName;
-    @Column(name = "custom_EML")
+    @Column(name = "users_eml")
     private String email;
-    @Column(name = "custom_PASS")
+    @Column(name = "users_pass")
     private String password;
 
-    public Customer() {
+    private User() {
+    }
+
+    public User(Long id, String firstName, String lastName, String email, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -60,4 +69,6 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

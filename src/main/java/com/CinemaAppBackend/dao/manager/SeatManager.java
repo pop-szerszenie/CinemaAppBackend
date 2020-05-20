@@ -1,4 +1,4 @@
-package com.CinemaAppBackend.manager;
+package com.CinemaAppBackend.dao.manager;
 
 import com.CinemaAppBackend.dao.repository.SeatRepo;
 import com.CinemaAppBackend.dao.entity.Seat;
@@ -29,12 +29,10 @@ public class SeatManager {
     }
 
     public List<Seat> findSeatsFree(){
-        List<Seat> freeSeats= seatRepo.findByStatus(1);
-        return freeSeats;
+        return seatRepo.findByStatus(1);
+
     }
 
 
-    public Seat save(Seat seat) {
-        return seatRepo.save(seat);
-    }
+
 }

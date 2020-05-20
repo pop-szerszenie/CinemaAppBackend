@@ -1,7 +1,7 @@
 package com.CinemaAppBackend.dao.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="seat")
@@ -9,7 +9,7 @@ public class Seat {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @NotNull
+
 
     @Column(name="seat_id")
     private Long id;
@@ -20,7 +20,6 @@ public class Seat {
     @Column(name="seat_sts")
     private int status; // 1 free, 0 - reserved (time after type button "Reservation" and before purchase), -1 - booking
 
-    //    Cinema cinema_id;
 
     public Seat(){
     }
@@ -56,7 +55,7 @@ public class Seat {
         this.place = place;
     }
 
-    public int isStatus() {
+    public int getStatus() {
         return status;
     }
 

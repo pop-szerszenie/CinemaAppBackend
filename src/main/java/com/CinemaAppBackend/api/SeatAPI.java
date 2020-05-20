@@ -1,7 +1,7 @@
 package com.CinemaAppBackend.api;
 
 import com.CinemaAppBackend.dao.entity.Seat;
-import com.CinemaAppBackend.manager.SeatManager;
+import com.CinemaAppBackend.dao.manager.SeatManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,33 +13,26 @@ import java.util.Optional;
 
 public class SeatAPI {
 
-    private SeatManager sm;
+    private SeatManager seatManager;
 
     @Autowired
-    public SeatAPI(SeatManager sm){
-        this.sm = sm;
-    }
-
-    @GetMapping ("/all")
-    public Iterable <Seat> getAll(){
-        return sm.findAll();
+    public SeatAPI(SeatManager seatManager){
+        this.seatManager = seatManager;
     }
 
     @GetMapping ()
-    public Optional<Seat> getByID(@RequestParam long index){
-        return sm.findById(index);
+    public Iterable <Seat> getAll(){
+        return seatManager.findAll();
     }
 
-    @GetMapping("/free-seats")
+    @GetMapping("/free")
     public List<Seat> getFreeSeats(){
-        List<Seat> freeSeats=sm.findSeatsFree();
-        return freeSeats;
-    }
-    @PostMapping("/seat-add")
-    public Seat addSeat(@RequestBody Seat seat){
-        return sm.save(seat);
+        return seatManager.findSeatsFree();
     }
 
-
+    @GetMapping ("/{id}")
+    public Optional<Seat> getByID(@PathVariable("id") long id){
+        return seatManager.findById(id);
+    }
 
 }
